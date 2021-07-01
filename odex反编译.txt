@@ -1,0 +1,26 @@
+导出Vdex源码方法
+将手机中的framework源码导出
+adb pull /system/framework framework
+
+编译vdexExtractor
+
+git clone https://github.com/anestisb/vdexExtractor
+cd vdexExtractor
+./make.sh
+cd tools/deodex/
+./run.sh -i vdex/ -o dex/
+
+反编译dex，两种方案
+JADX 一步到位编译
+bin/jadx dex_file.dex -d output_folder
+dex2jar转换成jar,然后JD-GUI反编译
+
+
+执行 java -jar baksmali-2.4.0.jar deodex Launcher3.odex
+我们可以在launcher文件夹中发现多了个out文件夹，
+里面有名为android和名为com的文件夹，打开里面全是smali文件
+
+smali文件转dex
+cmd执行命令，把out文件夹的smali转成dex，且起名classes.dex
+
+java -jar smali-2.4.0.jar assemble out -o classes.dex

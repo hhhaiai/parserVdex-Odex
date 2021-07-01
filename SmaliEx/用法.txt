@@ -1,0 +1,11 @@
+Usage:
+Deoptimize boot classes (The output will be in "odex" and "dex" folders):
+  java -jar oat2dex.jar boot <boot.oat file>
+Deoptimize application:
+  java -jar oat2dex.jar <app.odex> <boot-class-folder output from above>
+Get odex from oat:
+  java -jar oat2dex.jar odex <oat file>
+Get odex smali (with optimized opcode) from oat/odex:
+  java -jar oat2dex.jar smali <oat/odex file>
+Deodex /system/framework/ from device (need to connect with adb):
+  java -jar oat2dex.jar devfw
